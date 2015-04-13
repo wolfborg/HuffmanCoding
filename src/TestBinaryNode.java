@@ -4,14 +4,35 @@ public class TestBinaryNode
 	public static void main(String[] args)
 	{
 		BinaryNode<String> test = new BinaryNode<String>();
+		
+		testGetNumberOfNodes(test,1);
 		testIsLeaf(test,true);
 		testGetData(test,null);
+		testHasLeftChild(test,false);
+		testHasRightChild(test,false);
 		testGetLeftChild(test,null);
 		testGetRightChild(test,null);
-		testSetData(test,"test1");
-		testSetLeftChild(test,new BinaryNode<String>("test2"));
-		testSetRightChild(test,new BinaryNode<String>("test3"));
 		
+		testSetData(test,"test1");
+		testGetData(test,"test1");
+		testGetNumberOfNodes(test,1);
+		testGetHeight(test,1);
+		
+		testSetLeftChild(test,new BinaryNode<String>("test2"));
+		testGetNumberOfNodes(test,2);
+		testSetRightChild(test,new BinaryNode<String>("test3"));
+		testGetNumberOfNodes(test,3);
+		testHasLeftChild(test,true);
+		testHasRightChild(test,true);
+		testGetHeight(test,2);
+		
+		testSetLeftChild(test.getLeftChild(),new BinaryNode<String>("test4"));
+		testSetRightChild(test.getLeftChild(),new BinaryNode<String>("test5"));
+		testSetRightChild(test.getRightChild(),new BinaryNode<String>("test6"));
+		testGetHeight(test,3);
+		testGetNumberOfNodes(test,6);
+		
+		testCopy(test);
 	}
 	
 	public static void testIsLeaf(BinaryNodeInterface<String> binaryNode, boolean correct)
@@ -125,19 +146,83 @@ public class TestBinaryNode
 		
 		System.out.println();
 	}
+
+	public static void testGetNumberOfNodes(BinaryNodeInterface<String> binaryNode, int correct)
+	{
+		System.out.println("Testing getNumberOfNodes method: ");
+		
+		int result = binaryNode.getNumberOfNodes();
+		
+		System.out.print("getNumberOfNodes returns "+result+": ");
+		if(result==correct){
+			System.out.println("OK");
+		}else{
+			System.out.println("ERROR");
+		}
+		
+		System.out.println();
+	}
 	
 	public static void testGetHeight(BinaryNodeInterface<String> binaryNode, int correct)
 	{
+		System.out.println("Testing getHeight method: ");
 		
+		int result = binaryNode.getHeight();
+		
+		System.out.print("getHeight returns "+result+": ");
+		if(result==correct){
+			System.out.println("OK");
+		}else{
+			System.out.println("ERROR");
+		}
+		
+		System.out.println();
 	}
 	
-	public static void testGetNumberOfNodes(BinaryNodeInterface<String> binaryNode, int correct)
+	public static void testHasLeftChild(BinaryNodeInterface<String> binaryNode, boolean correct)
 	{
+		System.out.println("Testing hasLeftChild method: ");
 		
+		boolean result = binaryNode.hasLeftChild();
+		
+		System.out.print("hasLeftChild returns "+result+": ");
+		if(result==correct){
+			System.out.println("OK");
+		}else{
+			System.out.println("ERROR");
+		}
+		
+		System.out.println();
+	}
+	
+	public static void testHasRightChild(BinaryNodeInterface<String> binaryNode, boolean correct)
+	{
+		System.out.println("Testing hasRightChild method: ");
+		
+		boolean result = binaryNode.hasRightChild();
+		
+		System.out.print("hasRightChild returns "+result+": ");
+		if(result==correct){
+			System.out.println("OK");
+		}else{
+			System.out.println("ERROR");
+		}
+		
+		System.out.println();
 	}
 	
 	public static void testCopy(BinaryNodeInterface<String> binaryNode)
 	{
+		System.out.println("Testing copy method: ");
 		
+		System.out.print("Copying ... ");
+		BinaryNodeInterface<String> result = binaryNode.copy();
+		if(binaryNode==result){
+			System.out.println("OK");
+		}else{
+			System.out.println("ERROR");
+		}
+		
+		System.out.println();
 	}
 }
