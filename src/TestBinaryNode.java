@@ -216,8 +216,8 @@ public class TestBinaryNode
 		System.out.println("Testing copy method: ");
 		
 		System.out.print("Copying ... ");
-		BinaryNodeInterface<String> result = binaryNode.copy();
-		if(binaryNode==result){
+		BinaryNode<String> result = (BinaryNode<String>) binaryNode.copy();
+		if(((BinaryNode<String>)binaryNode).equals(result)){
 			System.out.println("OK");
 		}else{
 			System.out.println("ERROR");

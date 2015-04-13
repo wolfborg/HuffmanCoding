@@ -114,4 +114,21 @@ public class BinaryNode<E> implements BinaryNodeInterface<E>
 		
 		return newRoot;
 	}
+	
+	public boolean equals(BinaryNodeInterface<E> node)
+	{	
+		if(data.equals(node.getData())){
+			if(left != null){
+				left.equals(((BinaryNode<E>)node).getLeftChild());
+			}
+			
+			if(right != null){
+				right.equals(((BinaryNode<E>)node).getRightChild());
+			}
+			
+			return true;
+		}
+		
+		return false;
+	}
 }
