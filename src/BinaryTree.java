@@ -64,7 +64,7 @@ public class BinaryTree<E> implements BinaryTreeInterface<E>
 		return root.getHeight();
 	}
 
-	public int gerNumberOfNodes()
+	public int getNumberOfNodes()
 	{
 		return root.getNumberOfNodes();
 	}
@@ -86,7 +86,7 @@ public class BinaryTree<E> implements BinaryTreeInterface<E>
 
 	public void setTree(E rootData, BinaryTreeInterface<E> leftTree, BinaryTreeInterface<E> rightTree)
 	{
-		
+		privateSetTree(rootData, (BinaryTree<E>)leftTree, (BinaryTree<E>)rightTree);
 	}
 	
 
