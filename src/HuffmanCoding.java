@@ -1,6 +1,9 @@
 
 import java.io.FileNotFoundException;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class HuffmanCoding
@@ -10,7 +13,7 @@ public class HuffmanCoding
 		new HuffmanCoding("test1.txt");
 	}
 	
-	private class Node
+	private class Node implements Comparable<Node>
 	{
 		char letter;
 		int count;
@@ -54,14 +57,27 @@ public class HuffmanCoding
 			
 			return false;
 		}
+		
+		public String toString()
+		{
+			return ("Letter: "+letter+", Count: "+count);
+		}
+
+		public int compareTo(Node o)
+		{
+			if(count<o.count){
+				return -1;
+			}else if(count>o.count){
+				return 1;
+			}else{
+				return 0;
+			}
+		}
 	}
 	
 	public HuffmanCoding(String fileName)
 	{
-		BinaryTree<Node> huffman = new BinaryTree<Node>();
-		
-		int[] characters = new int[26];
-		
+		int[] characters = new int[26];	
 		Node[] nodes = new Node[26];
 		Scanner inputStream = null;
 		
@@ -99,12 +115,28 @@ public class HuffmanCoding
 		
 		inputStream.close();
 		
+		ArrayList<Node> sortNodes = new ArrayList<Node>();
 		for(int i=0;i<nodes.length;i++){
 			if(nodes[i]!=null){
-				System.out.println(nodes[i].getLetter()+", "+nodes[i].getCount());
+				System.out.println(nodes[i]);
+				sortNodes.add(nodes[i]);
 			}
+		}
+		System.out.println();
+		
+		System.out.println("\nSorting ... ");
+		Collections.sort(sortNodes);
+		
+		for(int i=0;i<sortNodes.size();i++){
+			System.out.println(sortNodes.get(i));
 		}
 		
 		System.out.println();
+		
+		System.out.println("Commencing Huffman Encrypting ... ");
+		BinaryTree<Node> huffman = new BinaryTree<Node>();
+		for(int i=0;i<sortNodes.size();i++){
+			
+		}
 	}
 }
